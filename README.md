@@ -1,2 +1,2 @@
 # spring-boot
-Run project: mvn spring-boot:run
+Run project: .\mvnw.cmd spring-boot:run
