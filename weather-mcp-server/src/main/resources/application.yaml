@@ -6,5 +6,11 @@ spring:
       server:
         name: weather-server
         version: 1.0.0
+  main:
+    banner-mode: off
+
+logging:
+  level:
+    root: ERROR
 server:
   port: 8081
