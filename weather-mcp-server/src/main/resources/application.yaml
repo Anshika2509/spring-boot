@@ -1,3 +1,10 @@
 spring:
   application:
     name: weather-mcp-server
+  ai:
+    mcp:
+      server:
+        name: weather-server
+        version: 1.0.0
+server:
+  port: 8081
