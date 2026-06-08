@@ -1,6 +1,7 @@
 package com.anshika.weather_assistant_mcp;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -11,9 +12,10 @@ public class WeatherController {
         this.weatherService = weatherService;
     }
 
-    @GetMapping("/weather-test")
-    public String weatherTest(){
-        return weatherService.testWeatherApi();
+    @GetMapping("/weather-test/{latitude}/{longitude}")
+    public String weatherTest(@PathVariable double latitude,
+                              @PathVariable double longitude){
+        return weatherService.getWeatherForecast(latitude, longitude);
     }
 
 }

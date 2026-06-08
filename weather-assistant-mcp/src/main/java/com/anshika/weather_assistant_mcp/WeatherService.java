@@ -2,6 +2,7 @@ package com.anshika.weather_assistant_mcp;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
+import org.springframework.ai.tool.annotation.Tool;
 
 import java.util.List;
 import java.util.Map;
@@ -11,16 +12,16 @@ public class WeatherService {
     private final RestClient restClient;
 
     public WeatherService(){
-        System.out.println("Weather Service created");
         this.restClient = RestClient.builder()
                 .baseUrl("https://api.weather.gov")
                 .defaultHeader("Accept", "application/geo+json")
                 .build();
     }
 
-    public String testWeatherApi(){
+    @Tool(description = "Get weather forecast for a location")
+    public String getWeatherForecast(double latitude, double longitude){
         Map response = restClient.get()
-            .uri("/points/38.8894,-77.0352")
+            .uri("/points/" + latitude + "," + longitude)
             .retrieve()
             .body(Map.class);
         Map properties = (Map) response.get("properties");
@@ -38,17 +39,6 @@ public class WeatherService {
         String name = firstPeriod.get("name").toString();
         String temperature = (firstPeriod.get("temperature").toString()) + "°" + firstPeriod.get("temperatureUnit").toString();
         String forecast = firstPeriod.get("detailedForecast").toString();
-
-        System.out.println("""
-        %s
-        Temperature: %s
-
-        %s
-        """.formatted(
-                name,
-                temperature,
-                forecast
-        ));
 
         return """
         <h2>%s</h2>

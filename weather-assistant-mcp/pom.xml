@@ -57,7 +57,7 @@
 
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-autoconfigure-mcp-server</artifactId>
+			<artifactId>spring-ai-starter-mcp-server</artifactId>
 		</dependency>
 	</dependencies>
 
